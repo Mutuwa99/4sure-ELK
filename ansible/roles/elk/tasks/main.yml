@@ -1,0 +1,38 @@
+---
+- name: Install Java
+  apt:
+    name: openjdk-11-jdk
+    state: present
+
+- name: Install Elasticsearch
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+    state: present
+    filename: elasticsearch
+
+- name: Install Logstash
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+    state: present
+    filename: logstash
+
+- name: Install Kibana
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+    state: present
+    filename: kibana
+
+- name: Install required packages
+  apt:
+    name: [elasticsearch, logstash, kibana]
+    state: latest
+
+- name: Start and enable services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - elasticsearch
+    - logstash
+    - kibana

@@ -1,0 +1,8 @@
+---
+- name: Deploy ELK Stack and Monitoring Agents
+  hosts: production
+  become: yes
+
+  roles:
+    - elk
+    - monitoring_agents

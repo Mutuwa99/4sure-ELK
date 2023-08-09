@@ -1,0 +1,24 @@
+---
+- name: Install Docker monitoring agent
+  shell: "curl -sSL https://get.docker.com/ | sh"
+
+- name: Install Docker monitoring tools (e.g., cAdvisor)
+  docker_container:
+    name: cadvisor
+    image: google/cadvisor:latest
+    state: started
+    restart_policy: always
+
+- name: Install and configure Log monitoring agent
+  apt:
+    name: filebeat
+    state: latest
+  copy:
+    src: files/filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+
+- name: Start and enable Filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: started

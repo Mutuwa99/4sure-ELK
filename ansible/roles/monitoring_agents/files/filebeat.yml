@@ -1,0 +1,8 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/lib/docker/containers/*/*.log
+  processors:
+    - add_docker_metadata: ~
+output.elasticsearch:
+  hosts: ["54.174.229.9:9200"]
