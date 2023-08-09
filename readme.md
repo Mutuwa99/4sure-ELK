@@ -22,7 +22,7 @@ The architecture consists of the following components:
 
 ### ELK Stack Installation
 
-1. Update the `inventory/production` file with your server's IP address, SSH username, and private key file path.
+1. Update the `inventory/production.ini` file with your server's IP address, SSH username, and private key file path.
 2. Modify the `ansible/roles/elk/tasks/main.yml` file as needed for Elasticsearch, Logstash, and Kibana installation.
 
 ### Docker Monitoring and Log Forwarding
