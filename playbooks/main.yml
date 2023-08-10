@@ -1,8 +1,7 @@
 ---
-- name: Deploy ELK Stack and Monitoring Agents
+- name: Deploy ELK Stack
   hosts: production
-  become: yes
-
+  become: true
   roles:
-    - elk
-    - monitoring_agents
+    - role: elk
+    - role: monitoring_agents
