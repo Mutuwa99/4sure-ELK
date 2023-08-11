@@ -1,0 +1,9 @@
+---
+- name: Deploy ELK Stack, Docker, and Log Agent
+  hosts: elk:docker-agent:log-agent
+  become: true
+  roles:
+    - common
+    - elk
+    - docker-agent
+    - log-agent
